@@ -20,7 +20,7 @@ export function Layout() {
         </NavLink>
         <NavLink to="/admin">Admin</NavLink>
         <NavLink to="/video-stream-demo">Video Stream</NavLink>
-        <NavLink to="/url-to-chunk">Download video in Chunk</NavLink>
+        {/* <NavLink to="/url-to-chunk">Download video in Chunk</NavLink> */}
       </nav>
 
       <main className="container">
@@ -58,7 +58,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "/player/:videoId",
+    path: "/player/:videoId/:userId",
     element: <SecureVideoPlayer />,
   },
 ]);
