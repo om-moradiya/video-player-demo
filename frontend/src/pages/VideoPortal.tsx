@@ -51,7 +51,7 @@ export default function VideoPortal() {
     const w = window.screen.availWidth;
     const h = window.screen.availHeight;
     window.open(
-      `/player/${videoId}`,
+      `/player/${videoId}/${userId}`,
       "SecureVideoWindow",
       `popup=yes,width=${w},height=${h},left=0,top=0,noopener`,
     );

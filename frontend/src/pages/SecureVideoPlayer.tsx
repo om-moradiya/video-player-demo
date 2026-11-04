@@ -20,6 +20,8 @@ import {
   mergeIntervals,
   sumIntervals,
 } from "../utils/videoUtils";
+import WatermarkOverlay from "./WatermarkOverlay";
+
 
 type Player = ReturnType<typeof videojs>;
 
@@ -72,7 +74,7 @@ function consumeToken(videoId: string): boolean {
 }
 
 export default function SecureVideoPlayer() {
-  const { videoId } = useParams<{ videoId: string }>();
+  const { videoId, userId } = useParams<{ videoId: string; userId: string }>();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const pageRef = useRef<HTMLDivElement | null>(null);
   const playerRef = useRef<Player | null>(null);
@@ -495,10 +497,12 @@ export default function SecureVideoPlayer() {
         <>
           {loading && <p className="player-error">Loading video…</p>}
           <div
-            ref={containerRef}
             className="player-stage"
             onContextMenu={(e) => e.preventDefault()}
-          />
+          >
+            <div ref={containerRef} className="player-video-container" />
+            {started && !loading && <WatermarkOverlay position="top-right" />}
+          </div>
           {!started && !loading && (
             <div className="start-overlay">
               <button onClick={startFullscreen}>Start Video</button>
